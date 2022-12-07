@@ -1,5 +1,5 @@
 {
-  "name": "playground",
+  "name": "@th-components/playground",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "vue": "^3.2.45",
-    "lib": "*"
+    "@th-components/playground": "*"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",

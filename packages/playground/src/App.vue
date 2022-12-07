@@ -1,8 +1,7 @@
 <script setup lang="ts">
-// import { ThHeader } from "lib";
 import { ref } from "vue";
 import CounterBar from "./components/CounterBar.vue";
-import { ThHeader } from "lib";
+import { ThHeader } from "@th-components/lib";
 
 const title = ref<string>("Test UI for component lib 📒");
 </script>

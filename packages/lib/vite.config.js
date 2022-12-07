@@ -20,8 +20,8 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "ComponentLib",
-      fileName: (format, entryName) => `${entryName}.mjs`,
-      formats: ["es"],
+      fileName: (format) => `th-components.${format}.js`,
+      formats: ["es", "umd"],
     },
     cssCodeSplit: true,
     outDir: "dist",
@@ -38,8 +38,7 @@ export default defineConfig({
         // preserveModules: true,
         // preserveModulesRoot: "src",
         // inlineDynamicImports: false,
-        // exports: "named",
-        manualChunks: () => "lib",
+        exports: "named",
 
         assetFileNames: ({ name }) => {
           if (/\.scss$/.test(name ?? "")) {

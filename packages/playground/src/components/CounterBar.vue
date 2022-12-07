@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { ThButton } from "lib";
+import { ThButton } from "@th-components/lib";
 import { ref } from "vue";
 
 const count = ref<number>(0);
