@@ -1,0 +1,17 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": ["./src/**/*", "./src/**/*.vue"],
+  "compilerOptions": {
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"]
+    },
+    "types": ["jsdom"],
+    "declarationDir": "dist",
+    "declaration": true,
+    "isolatedModules": true,
+    "lib": ["esnext", "dom"],
+    "skipLibCheck": true,
+  }
+}

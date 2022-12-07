@@ -1,0 +1,30 @@
+<template>
+  <div class="counter-bar">
+    <th-button text="Plus" @click="increment" />
+    <span>
+      {{ count }}
+    </span>
+    <th-button text="Minus" @click="decrement" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ThButton } from "lib";
+import { ref } from "vue";
+
+const count = ref<number>(0);
+const increment = () => {
+  count.value += 1;
+};
+
+const decrement = () => {
+  count.value -= 1;
+};
+</script>
+
+<style scoped lang="scss">
+.counter-bar {
+  display: flex;
+  gap: 2rem;
+}
+</style>
