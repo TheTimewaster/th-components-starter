@@ -5,8 +5,8 @@ th-components-starter is a heavily opionated boilerplate for a Vue 3 component l
 * ✌️ uses Vue 3 with setup script syntax
 * 💪 exports typed props, slot props and events for components
 * 🛠 can be extended with utilities and composables
-* ✨ pre configured ESlint and Prettier
-* ⚡️ uses vite as dev server and build tool
+* ✨ pre configured ESlint with Prettier integration
+* ⚡️ powered by Vite as build tool
 * 🧩 support for ES6 imports and fully tree shakable
 * 🎨 components use SCSS as CSS preprocessor
 
@@ -48,7 +48,7 @@ This folder structure is just an example
 Please try to separate types, SCSS style and Vue SFC to separate files. Especially SCSS stylesheets need to be separate files, since they can be imported individually without using the whole css file.
 
 ### Export components and composables
-In order to export components and composables and get the support for typings you have to add the components and composables 
+In order to export components and composables and get the support for typings you have to add the components and composables in the corresponding `index.ts`. 
 
 Components
 
@@ -59,6 +59,7 @@ export { default as ThLayout } from './ThLayout.vue';
 ```
 
 Composables
+
 ```typescript
 // packages/lib/composables/index.ts
 export { default as useFeature } from './useFeature/useFeature.ts';
@@ -71,13 +72,13 @@ export { default as useNewFeature } from './useNewFeature.ts';
 yarn run lib:build
 ```
 
-The build step also generates the typescript definitions for 
+The build step for lib also generates the typescript definitions for components, composables and other modules exported in `src/index.ts`.
 
 ## How to use library
 
 ### Vue Components
 In order to use the library, just import the component directly from the library.
-Make sure to destructure the import to make use of Vite tree shaking.
+Make sure to import every module individually to make use of Vite tree shaking.
 
 Example:
 ``` html
@@ -89,6 +90,7 @@ Example:
   <th-header title="Awesome title" />
 </template>
 ```
+
 The SCSS stylesheet of the component has to be imported either in a vue component.
 
 ``` html

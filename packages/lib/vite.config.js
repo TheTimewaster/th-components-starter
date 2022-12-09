@@ -14,13 +14,24 @@ export default defineConfig({
           dest: 'scss',
         },
       ],
+      // if you make use of scss @imports, maybe consider enabling this flag
+      // and make the imports >relative<
+      // flatten: false,
     }),
   ],
+  resolve: {
+    alias: {
+      // make use of aliases for cleaner import statements
+      // extend, if necessary
+      '@components': path.resolve(__dirname, './src/components'),
+      '@composables': path.resolve(__dirname, './src/composables'),
+    }
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       // library name can be customized
-      name: 'ThComponent',
+      name: 'th-components',
       // output name can be customized
       // make sure to rename the values of 'main', 'modules' and 'exports' in package.json as well!
       fileName: (format) => `th-components.${format}.js`,

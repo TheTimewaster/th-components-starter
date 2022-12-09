@@ -4,7 +4,8 @@
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"]
+      "@components/*": ["src/components/*"],
+      "@composables/*": ["src/composables/*"]
     },
     "declarationDir": "dist/types",
     "declaration": true,
