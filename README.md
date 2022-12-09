@@ -16,7 +16,7 @@ Fork or clone this project and make sure that you follow these steps in order to
 *  rename the project in package.json of project root
 * optional: rename the `@` prefix in `packages/lib/package.json` and `packages/playground/package.json` project names respectively, also rename the lib dependency in `packages/playground/package.json`, if you have renamed the lib project
 * run `yarn install`
-* run `yarn prepare` 
+* run `yarn lib:prepare` 
 * run `yarn playground:dev` to get playground dev server running
 
 ## Add new components and composables
