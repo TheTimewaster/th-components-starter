@@ -8,7 +8,7 @@
 defineProps({
   title: {
     type: String,
-    default: "Default Header",
+    default: 'Default Header',
   },
 });
 </script>

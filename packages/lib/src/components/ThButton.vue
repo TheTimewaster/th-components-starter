@@ -11,13 +11,13 @@ defineProps({
    */
   text: {
     type: String,
-    default: "Click here!",
+    default: 'Click here!',
   },
 });
 
-const emit = defineEmits(["click"]);
+const emit = defineEmits(['click']);
 
-const handleClick = () => emit("click");
+const handleClick = () => emit('click');
 </script>
 
 <style scoped lang="scss" src="./ThButton.scss" />
