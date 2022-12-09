@@ -1,21 +1,31 @@
 <template>
   <button @click.prevent="handleClick" class="th-button">
-    {{ text }}
+    <slot :textUppercase="uppercaseText">
+      {{ text }}
+    </slot>
   </button>
 </template>
 
 <script setup lang="ts">
-defineProps({
+import { withDefaults, defineProps, defineEmits, computed } from 'vue';
+export interface Props {
   /**
-   * The text appearing in the button
+   * the button text content
    */
-  text: {
-    type: String,
-    default: 'Click here!',
-  },
+  text: string;
+}
+
+export interface Events {
+  (e: 'click'): void;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  text: 'click here',
 });
 
-const emit = defineEmits(['click']);
+const emit = defineEmits<Events>();
+
+const uppercaseText = computed(() => props.text.toUpperCase());
 
 const handleClick = () => emit('click');
 </script>

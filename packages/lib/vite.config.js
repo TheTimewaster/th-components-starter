@@ -24,7 +24,7 @@ export default defineConfig({
       // output name can be customized
       // make sure to rename the values of 'main', 'modules' and 'exports' in package.json as well!
       fileName: (format) => `th-components.${format}.js`,
-      formats: ['es', 'umd'],
+      formats: ['es'],
     },
     cssCodeSplit: true,
     outDir: 'dist',
@@ -53,5 +53,6 @@ export default defineConfig({
         },
       },
     },
+    emptyOutDir: true,
   },
 });

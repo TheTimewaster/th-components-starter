@@ -1,10 +1,12 @@
 <template>
   <div class="counter-bar">
-    <th-button text="Plus" @click="increment" />
+    <th-button @click="decrement" v-slot="{ textUppercase }">
+      {{ textUppercase }}
+    </th-button>
     <span>
       {{ count }}
     </span>
-    <th-button text="Minus" @click="decrement" />
+    <th-button text="Plus" @click="increment" />
   </div>
 </template>
 

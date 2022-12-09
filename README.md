@@ -2,11 +2,12 @@
 
 th-components-starter is a heavily opionated boilerplate for a Vue 3 component library.
 
-* ✌️ uses Vue 3
-* 💪 exports typed props and events 
+* ✌️ uses Vue 3 with setup script syntax
+* 💪 exports typed props, slot props and events for components
+* 🛠 can be extended with utilities and composables
 * ✨ pre configured ESlint and Prettier
 * ⚡️ uses vite as dev server and build tool
-* 🧩 supports ES6 imports and fully tree shakable
+* 🧩 support for ES6 imports and fully tree shakable
 * 🎨 components use SCSS as CSS preprocessor
 
 ## How to start 🚀
@@ -103,5 +104,3 @@ Or in a single main SCSS file
 // main.scss
 @import "@th-components/lib/scss/ThButton.scss";
 ```
-
-> More Coming soon
