@@ -19,7 +19,10 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'ComponentLib',
+      // library name can be customized
+      name: 'ThComponent',
+      // output name can be customized
+      // make sure to rename the values of 'main', 'modules' and 'exports' in package.json as well!
       fileName: (format) => `th-components.${format}.js`,
       formats: ['es', 'umd'],
     },
@@ -37,6 +40,12 @@ export default defineConfig({
         assetFileNames: ({ name }) => {
           if (/\.scss$/.test(name ?? '')) {
             return 'scss/[name]-[extname]';
+          }
+
+          // lib css name can be customized,
+          // if you intend to use css file directly instead of individual scss imports
+          if (/\.css$/.test(name ?? '')) {
+            return 'assets/th-components[extname]';
           }
 
           // default value

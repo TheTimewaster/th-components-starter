@@ -13,10 +13,4 @@ defineProps({
 });
 </script>
 
-<style scoped lang="scss">
-.th-header {
-  h1 {
-    font-weight: bold;
-  }
-}
-</style>
+<style scoped lang="scss" src="./ThHeader.scss" />
