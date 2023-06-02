@@ -1,7 +1,6 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
-    "composite": true,
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
@@ -9,12 +8,7 @@
     },
     "declarationDir": "dist/types",
     "declaration": true,
-    "useDefineForClassFields": true,
-    "jsx": "preserve",
     "sourceMap": true,
-    "types": [
-      "vite/client"
-    ],
   },
   "include": ["./src/**/*.ts", "./src/**/*.vue"],
 }

@@ -7,21 +7,23 @@
 </template>
 
 <script setup lang="ts">
-import { withDefaults, defineProps, defineEmits, computed } from 'vue';
-export interface Props {
-  /**
-   * the button text content
-   */
-  text: string;
-}
+import { computed } from 'vue';
 
-export interface Events {
+interface Events {
   (e: 'click'): void;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  text: 'click here',
-});
+const props = withDefaults(
+  defineProps<{
+    /**
+     * the button text content
+     */
+    text: string;
+  }>(),
+  {
+    text: 'click here',
+  }
+);
 
 const emit = defineEmits<Events>();
 

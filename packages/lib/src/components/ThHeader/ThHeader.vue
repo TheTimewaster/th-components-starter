@@ -5,13 +5,17 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-defineProps({
-  title: {
-    type: String,
-    default: 'Default Header',
-  },
-});
+withDefaults(
+  defineProps<{
+    /**
+     * the header title
+     */
+    title?: string;
+  }>(),
+  {
+    title: 'ThHeader',
+  }
+);
 </script>
 
 <style scoped lang="scss" src="./ThHeader.scss" />
