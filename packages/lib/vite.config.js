@@ -39,7 +39,7 @@ export default defineConfig({
       name: 'th-components',
       // output name can be customized
       // make sure to rename the values of 'main', 'modules' and 'exports' in package.json as well!
-      fileName: (format) => `th-components.${format}.js`,
+      fileName: (format) => `index.${format}.js`,
       formats: ['es'],
     },
     cssCodeSplit: true,
@@ -61,7 +61,7 @@ export default defineConfig({
           // lib css name can be customized,
           // if you intend to use css file directly instead of individual scss imports
           if (/\.css$/.test(name ?? '')) {
-            return 'assets/th-components[extname]';
+            return 'assets/index[extname]';
           }
 
           // default value

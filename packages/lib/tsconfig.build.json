@@ -3,6 +3,9 @@
   "compilerOptions": {
     "declarationDir": "dist/types",
     "declaration": true,
-    "noEmit": false
+    "emitDeclarationOnly": true,
+    "noEmit": false,
   },
+  "include": ["src/**/*.ts", "src/**/*.vue"],
+  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"]
 }

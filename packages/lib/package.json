@@ -6,17 +6,17 @@
   "files": [
     "dist/{scss}/**.scss"
   ],
-  "module": "./dist/th-components.es.js",
+  "module": "./dist/index.es.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/th-components.es.js",
+      "import": "./dist/index.es.js",
       "types": "./dist/types/index.d.ts"
     }
   },
   "scripts": {
     "build": "vite build && yarn build-types",
-    "build-types": "vue-tsc --declaration --emitDeclarationOnly -p tsconfig.build.json",
+    "build-types": "vue-tsc --project tsconfig.build.json && resolve-tspaths --project tsconfig.build.json --out dist/types",
     "build-only": "vite build",
     "test": "vitest",
     "type-check": "vue-tsc --noEmit -p tsconfig.lib.json --composite false",
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@babel/types": "^7.20.5",
+    "resolve-tspaths": "^0.8.18",
     "sass": "^1.56.1",
     "vite-plugin-static-copy": "^1.0.1"
   }
