@@ -6,8 +6,6 @@
       "@components/*": ["src/components/*"],
       "@composables/*": ["src/composables/*"]
     },
-    "declarationDir": "dist/types",
-    "declaration": true,
     "sourceMap": true,
   },
   "include": ["./src/**/*.ts", "./src/**/*.vue"],

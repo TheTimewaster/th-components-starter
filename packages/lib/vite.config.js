@@ -9,14 +9,19 @@ export default defineConfig({
     vue(),
     viteStaticCopy({
       targets: [
+        // copy the original vue files to dist, in case you want to use them
+        {
+          src: 'src/**/*.vue',
+          dest: '',
+        },
         {
           src: 'src/**/*.scss',
-          dest: 'scss',
+          dest: '',
         },
       ],
       // if you make use of scss @imports, maybe consider enabling this flag
       // and make the imports >relative<
-      // flatten: false,
+      structured: true,
     }),
   ],
   resolve: {
