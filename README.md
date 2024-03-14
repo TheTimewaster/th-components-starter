@@ -32,13 +32,11 @@ This folder structure is just an example
         └── src/
             ├── components/
             │   ├── ThButton/
-            │   │   ├── types.d.ts
             │   │   ├── ThButton.vue
             │   │   └── ThButton.scss
             │   └── ThLayout.vue
             ├── composables/
             │   ├── useFeature/
-            │   │   ├── types.d.ts
             │   │   └── useFeature.ts
             │   ├── useNewFeature.ts
             │   └── index.ts
@@ -96,7 +94,7 @@ The SCSS stylesheet of the component has to be imported either in a vue componen
 ``` html
 <!-- App.vue -->
 <script>
-  import "@th-components/lib/scss/ThButton.scss";
+  import "@th-components/lib/src/ThButton/ThButton.scss";
   import { ThButton } from "@th-components/lib";
 </script>
 ```
@@ -104,5 +102,5 @@ The SCSS stylesheet of the component has to be imported either in a vue componen
 Or in a single main SCSS file
 ``` scss
 // main.scss
-@import "@th-components/lib/scss/ThButton.scss";
+@import "@th-components/lib/src/ThButton/ThButton.scss";
 ```
