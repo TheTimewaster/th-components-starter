@@ -2,11 +2,17 @@ import { defineConfig } from 'vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
+import dts from 'vite-plugin-dts';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
+    dts({
+      tsconfigPath: './tsconfig.build.json',
+      cleanVueFileName: true,
+      exclude: ['src/**/*.stories.ts', 'src/**/*.spec.ts', 'src/**/*.test.ts'],
+    }),
     viteStaticCopy({
       targets: [
         // copy the original vue files to dist, in case you want to use them
@@ -30,7 +36,7 @@ export default defineConfig({
       // extend, if necessary
       '@components': path.resolve(__dirname, './src/components'),
       '@composables': path.resolve(__dirname, './src/composables'),
-    }
+    },
   },
   build: {
     lib: {

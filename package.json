@@ -30,7 +30,9 @@
   },
   "author": "",
   "workspaces": [
-    "packages/*"
+    "packages/lib",
+    "packages/nuxt",
+    "packages/playgrounds/*"
   ],
   "engines": {
     "npm": "please-use-yarn",

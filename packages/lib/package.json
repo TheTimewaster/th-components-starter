@@ -15,7 +15,7 @@
     }
   },
   "scripts": {
-    "build": "vite build && yarn build-types",
+    "build": "vite build",
     "build-types": "vue-tsc --project tsconfig.build.json && resolve-tspaths --project tsconfig.build.json --out dist/types",
     "build-only": "vite build",
     "test": "vitest",
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@babel/types": "^7.20.5",
+    "consola": "^3.2.3",
     "resolve-tspaths": "^0.8.18",
     "sass": "^1.56.1",
     "vite-plugin-dts": "^3.7.3",

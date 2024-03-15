@@ -1,10 +1,14 @@
 <template>
   <div class="th-header">
     <h1>{{ title }}</h1>
+
+    <ThButton>Test</ThButton>
   </div>
 </template>
 
 <script setup lang="ts">
+import ThButton from '@components/ThButton/ThButton.vue';
+
 withDefaults(
   defineProps<{
     /**
@@ -14,7 +18,7 @@ withDefaults(
   }>(),
   {
     title: 'ThHeader',
-  }
+  },
 );
 </script>
 
