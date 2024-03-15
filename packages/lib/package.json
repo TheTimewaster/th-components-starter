@@ -15,6 +15,7 @@
     }
   },
   "scripts": {
+    "list": "tsc tools/names.ts --target esnext --moduleResolution NodeNext --module NodeNext && node tools/names.js",
     "build": "vite build",
     "build-types": "vue-tsc --project tsconfig.build.json && resolve-tspaths --project tsconfig.build.json --out dist/types",
     "build-only": "vite build",
