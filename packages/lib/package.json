@@ -29,6 +29,7 @@
     "@babel/types": "^7.20.5",
     "resolve-tspaths": "^0.8.18",
     "sass": "^1.56.1",
+    "vite-plugin-dts": "^3.7.3",
     "vite-plugin-static-copy": "^1.0.1"
   }
 }
