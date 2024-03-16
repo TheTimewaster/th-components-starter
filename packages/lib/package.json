@@ -7,11 +7,11 @@
     "dist/{scss}/**.scss"
   ],
   "module": "./dist/index.es.js",
-  "types": "./dist/types/index.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
-      "types": "./dist/types/index.d.ts"
+      "types": "./dist/index.d.ts"
     },
     "./assets/*": {
       "import": "./dist/assets/*",
