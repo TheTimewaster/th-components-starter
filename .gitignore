@@ -15,6 +15,7 @@ node_modules
 
 # Generated dirs
 dist
+out
 
 # Nuxt
 .nuxt
@@ -54,3 +55,4 @@ coverage
 Network Trash Folder
 Temporary Items
 .apdisk
+

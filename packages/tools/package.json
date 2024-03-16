@@ -1,0 +1,23 @@
+{
+  "name": "@th-components/tools",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "list:build": "tsc --project tsconfig.json",
+    "list:run": "node out/list-exported.js -i ../lib/src -o ../lib/constants",
+    "list:lint": "eslint --fix ../lib/constants/*.ts",
+    "list": "yarn list:build && yarn list:run && yarn list:lint"
+  },
+  "devDependencies": {
+    "consola": "^3.2.3"
+  }
+}

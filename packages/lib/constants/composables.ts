@@ -6,6 +6,6 @@
  * and is used for tooling purposes.
  */
 export default {
-  'src/composables/index.ts': ['useScrollToTop'],
-  'src/composables/useDarkmode/index.ts': ['useDarkmode'],
+  'composables/index.ts': ['useScrollToTop'],
+  'composables/useDarkmode/index.ts': ['useDarkmode'],
 };

@@ -6,6 +6,6 @@
  * and is used for tooling purposes.
  */
 export default {
-  'src/components/index.ts': ['ThHeader'],
-  'src/components/ThButton/index.ts': ['ThButton', 'ThButtonLink'],
+  'components/index.ts': ['ThHeader'],
+  'components/ThButton/index.ts': ['ThButton', 'ThButtonLink'],
 };
