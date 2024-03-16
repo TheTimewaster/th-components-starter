@@ -1,5 +1,6 @@
 export default defineNuxtConfig({
-  modules: ['../src/module'],
+  modules: ['../../nuxt/src/module'],
   myModule: {},
-  devtools: { enabled: true }
+  devtools: { enabled: true },
+  css: ['@th-components/lib/assets/index.css'],
 })

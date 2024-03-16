@@ -1,4 +1,5 @@
-import { defineNuxtModule, addPlugin, createResolver } from '@nuxt/kit';
+import { defineNuxtModule, addPlugin, createResolver, addComponent } from '@nuxt/kit';
+import allComponents from '../../lib/constants/components';
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {}
@@ -11,6 +12,16 @@ export default defineNuxtModule<ModuleOptions>({
   // Default configuration options of the Nuxt module
   defaults: {},
   setup(options, nuxt) {
-    const resolver = createResolver(import.meta.url);
+    const getComponents = () => Object.values(allComponents).flat();
+
+    // register components
+    const components = getComponents();
+    components.forEach((component) => {
+      addComponent({
+        filePath: '@th-components/lib',
+        export: component,
+        name: component,
+      });
+    });
   },
 });

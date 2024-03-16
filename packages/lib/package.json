@@ -12,16 +12,23 @@
     ".": {
       "import": "./dist/index.es.js",
       "types": "./dist/types/index.d.ts"
+    },
+    "./assets/*": {
+      "import": "./dist/assets/*",
+      "require": "./dist/assets/*"
     }
   },
   "scripts": {
-    "list": "tsc tools/names.ts --target esnext --moduleResolution NodeNext --module NodeNext && node tools/names.js",
     "build": "vite build",
     "build-types": "vue-tsc --project tsconfig.build.json && resolve-tspaths --project tsconfig.build.json --out dist/types",
     "build-only": "vite build",
     "test": "vitest",
     "type-check": "vue-tsc --noEmit -p tsconfig.lib.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path ../../.gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path ../../.gitignore",
+    "list:build": "tsc tools/list-exported.ts --target esnext --moduleResolution NodeNext --module NodeNext",
+    "list:run": "node tools/list-exported.js",
+    "list:lint": "eslint --fix ./constants/*.ts",
+    "list": "yarn list:build && yarn list:run && yarn list:lint"
   },
   "dependencies": {
     "vue": "^3.2.45"
