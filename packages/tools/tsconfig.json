@@ -5,7 +5,7 @@
     "target": "ESNext",
     "module": "ESNext",
     "outDir": "./out",
-    "lib": ["ESNext"],
+    "lib": ["ESNext"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts"]
 }

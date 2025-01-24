@@ -6,7 +6,7 @@
       "@components/*": ["src/components/*"],
       "@composables/*": ["src/composables/*"]
     },
-    "sourceMap": true,
+    "sourceMap": true
   },
-  "include": ["./src/**/*.ts", "./src/**/*.vue"],
+  "include": ["./src/**/*.ts", "./src/**/*.vue"]
 }

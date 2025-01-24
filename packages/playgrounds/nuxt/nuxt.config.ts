@@ -3,4 +3,4 @@ export default defineNuxtConfig({
   myModule: {},
   devtools: { enabled: true },
   css: ['@th-components/lib/assets/index.css'],
-})
+});

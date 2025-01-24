@@ -22,7 +22,7 @@ const props = withDefaults(
   }>(),
   {
     text: 'click here',
-  }
+  },
 );
 
 const emit = defineEmits<Events>();

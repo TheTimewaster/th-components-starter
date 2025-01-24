@@ -18,6 +18,6 @@
     "list": "yarn list:build && yarn list:run && yarn list:lint"
   },
   "devDependencies": {
-    "consola": "^3.2.3"
+    "consola": "^3.4.0"
   }
 }

@@ -4,46 +4,47 @@ import * as glob from 'glob';
 import { consola } from 'consola';
 import path from 'path';
 import { parseArgs } from 'node:util';
-const { values: { outDir, inDir }, } = parseArgs({
-    options: {
-        outDir: {
-            type: 'string',
-            short: 'o',
-            default: './constants',
-        },
-        inDir: {
-            type: 'string',
-            short: 'i',
-            default: './src',
-        },
+const {
+  values: { outDir, inDir },
+} = parseArgs({
+  options: {
+    outDir: {
+      type: 'string',
+      short: 'o',
+      default: './constants',
     },
+    inDir: {
+      type: 'string',
+      short: 'i',
+      default: './src',
+    },
+  },
 });
 if (outDir == null || inDir == null) {
-    consola.error('Please provide the outDir and inDir options');
-    process.exit(1);
+  consola.error('Please provide the outDir and inDir options');
+  process.exit(1);
 }
 // Define aliases for the paths
 // TODO: take aliases from tsconfig.json
 const aliases = {
-    '@composables': 'src/composables',
-    '@components': 'src/components',
+  '@composables': 'src/composables',
+  '@components': 'src/components',
 };
 consola.start(`Creating modules list from ${inDir}...`);
 const mode = await consola.prompt('Do you want to export components or composables or both', {
-    type: 'select',
-    options: ['both', 'components', 'composables'],
-    initial: 'both',
+  type: 'select',
+  options: ['both', 'components', 'composables'],
+  initial: 'both',
 });
 // first make sure, that the outDir exists
 if (!fs.existsSync(outDir)) {
-    consola.info(`Creating directory ${outDir}`);
-    fs.mkdirSync(outDir);
-}
-else {
-    consola.info(`Cleaning directory ${outDir}`);
-    // otherwise clean the directory
-    fs.rmSync(outDir, { recursive: true });
-    fs.mkdirSync(outDir);
+  consola.info(`Creating directory ${outDir}`);
+  fs.mkdirSync(outDir);
+} else {
+  consola.info(`Cleaning directory ${outDir}`);
+  // otherwise clean the directory
+  fs.rmSync(outDir, { recursive: true });
+  fs.mkdirSync(outDir);
 }
 /**
  *
@@ -53,59 +54,56 @@ else {
  * @returns
  */
 const addModuleByExtension = (normalizedPath, symbolText, extensions) => {
-    const ret = [];
-    // first test, if the path exists and is a directory, we want to skip that
-    if (fs.existsSync(normalizedPath) && fs.lstatSync(normalizedPath).isDirectory())
-        return ret;
-    // next up, test if the file exists with given extensions
-    extensions.forEach((ext) => {
-        const fullExtension = `.${ext}`;
-        let fileName = normalizedPath;
-        if (!normalizedPath.endsWith(fullExtension)) {
-            // if the symbol text does not end with the file extension, we will add it
-            fileName += fullExtension;
-        }
-        // otherwise test if the file exists
-        if (fs.existsSync(fileName) && fs.lstatSync(fileName).isFile()) {
-            ret.push(symbolText.replace(fullExtension, ''));
-        }
-    });
-    return ret;
+  const ret = [];
+  // first test, if the path exists and is a directory, we want to skip that
+  if (fs.existsSync(normalizedPath) && fs.lstatSync(normalizedPath).isDirectory()) return ret;
+  // next up, test if the file exists with given extensions
+  extensions.forEach((ext) => {
+    const fullExtension = `.${ext}`;
+    let fileName = normalizedPath;
+    if (!normalizedPath.endsWith(fullExtension)) {
+      // if the symbol text does not end with the file extension, we will add it
+      fileName += fullExtension;
+    }
+    // otherwise test if the file exists
+    if (fs.existsSync(fileName) && fs.lstatSync(fileName).isFile()) {
+      ret.push(symbolText.replace(fullExtension, ''));
+    }
+  });
+  return ret;
 };
 // Function to get all exported symbols
 function getExportedModules(indexFile, extract) {
-    const exportedModules = [];
-    // console.log(sourceFile.fileName, sourceFile.getChildren());
-    ts.forEachChild(indexFile, (node) => {
-        if (ts.isExportDeclaration(node) && node.moduleSpecifier != null) {
-            // get only symbol from the text and exclude any file extension
-            const text = node.moduleSpecifier.getText().replace(/['"]/g, '');
-            let normalizedPath = null;
-            // in case the text starts with a alias, we have to replace it with the actual path
-            const alias = Object.keys(aliases).find((key) => text.startsWith(key));
-            const symbolText = text.split('/').pop();
-            if (alias != null) {
-                const normalizedBase = indexFile.fileName.replace('index.ts', '').replace(alias, aliases[alias]);
-                normalizedPath = path.join(normalizedBase, text.replace(alias, ''));
-            }
-            else if (symbolText != null) {
-                normalizedPath = indexFile.fileName.replace('index.ts', symbolText.replace('./', ''));
-            }
-            if (normalizedPath != null && symbolText != null) {
-                // based on the current location of the index.ts, we have to look for a relative path
-                if (extract === 'composables') {
-                    const modules = addModuleByExtension(normalizedPath, symbolText, ['ts', 'js']);
-                    exportedModules.push(...modules);
-                }
-                else {
-                    const modules = addModuleByExtension(normalizedPath, symbolText, ['vue']);
-                    exportedModules.push(...modules);
-                    // in case the component is a typescript file, we have to put this into consideration
-                }
-            }
+  const exportedModules = [];
+  // console.log(sourceFile.fileName, sourceFile.getChildren());
+  ts.forEachChild(indexFile, (node) => {
+    if (ts.isExportDeclaration(node) && node.moduleSpecifier != null) {
+      // get only symbol from the text and exclude any file extension
+      const text = node.moduleSpecifier.getText().replace(/['"]/g, '');
+      let normalizedPath = null;
+      // in case the text starts with a alias, we have to replace it with the actual path
+      const alias = Object.keys(aliases).find((key) => text.startsWith(key));
+      const symbolText = text.split('/').pop();
+      if (alias != null) {
+        const normalizedBase = indexFile.fileName.replace('index.ts', '').replace(alias, aliases[alias]);
+        normalizedPath = path.join(normalizedBase, text.replace(alias, ''));
+      } else if (symbolText != null) {
+        normalizedPath = indexFile.fileName.replace('index.ts', symbolText.replace('./', ''));
+      }
+      if (normalizedPath != null && symbolText != null) {
+        // based on the current location of the index.ts, we have to look for a relative path
+        if (extract === 'composables') {
+          const modules = addModuleByExtension(normalizedPath, symbolText, ['ts', 'js']);
+          exportedModules.push(...modules);
+        } else {
+          const modules = addModuleByExtension(normalizedPath, symbolText, ['vue']);
+          exportedModules.push(...modules);
+          // in case the component is a typescript file, we have to put this into consideration
         }
-    });
-    return exportedModules;
+      }
+    }
+  });
+  return exportedModules;
 }
 // Get all index.ts files in the src directory and its subdirectories
 const indexFiles = glob.sync(inDir + '/**/index.ts');
@@ -114,13 +112,15 @@ const program = ts.createProgram(indexFiles, {});
 const checker = program.getTypeChecker();
 const exportedComposables = {};
 const extractComposables = (file, sourceFile) => {
-    if ((mode === 'both' || mode === 'composables') && file.indexOf('composables') >= 0) {
-        // composables need other handling than components
-        const exportedModules = getExportedModules(sourceFile, 'composables');
-        if (exportedModules.length > 0) {
-            exportedComposables[file] = exportedModules;
-        }
-        fs.writeFileSync(`${outDir}/composables.ts`, `
+  if ((mode === 'both' || mode === 'composables') && file.indexOf('composables') >= 0) {
+    // composables need other handling than components
+    const exportedModules = getExportedModules(sourceFile, 'composables');
+    if (exportedModules.length > 0) {
+      exportedComposables[file] = exportedModules;
+    }
+    fs.writeFileSync(
+      `${outDir}/composables.ts`,
+      `
     /**
      * This file is auto-generated by the list-modules.ts script!
      * Do not modify this file manually!
@@ -129,18 +129,21 @@ const extractComposables = (file, sourceFile) => {
      * and is used for tooling purposes.
      */
     export default ${JSON.stringify(exportedComposables, null, 2)};
-    `);
-    }
+    `,
+    );
+  }
 };
 const exportedComponents = {};
 const extractComponents = (file, sourceFile) => {
-    if ((mode === 'both' || mode === 'components') && file.indexOf('composables') === -1) {
-        // components need other handling than composables
-        const exportedModules = getExportedModules(sourceFile, 'components');
-        if (exportedModules.length > 0) {
-            exportedComponents[file] = exportedModules;
-        }
-        fs.writeFileSync(`${outDir}/components.ts`, `
+  if ((mode === 'both' || mode === 'components') && file.indexOf('composables') === -1) {
+    // components need other handling than composables
+    const exportedModules = getExportedModules(sourceFile, 'components');
+    if (exportedModules.length > 0) {
+      exportedComponents[file] = exportedModules;
+    }
+    fs.writeFileSync(
+      `${outDir}/components.ts`,
+      `
     /**
      * This file is auto-generated by the list-modules.ts script!
      * Do not modify this file manually!
@@ -149,34 +152,31 @@ const extractComponents = (file, sourceFile) => {
      * and is used for tooling purposes.
      */
     export default ${JSON.stringify(exportedComponents, null, 2)};
-    `);
-    }
+    `,
+    );
+  }
 };
 // Get all exported modules from each index.ts file
 indexFiles.forEach((file) => {
-    // exclude the src/index.ts file
-    // TODO: take inDir into consideration
-    if (file.indexOf('src/index.ts') >= 0)
-        return;
-    // here we want to separate composables and components
-    // skip the file if it's not the type we want
-    if (mode === 'composables' && file.indexOf('composables') >= 0)
-        return;
-    if (mode === 'components' && file.indexOf('composables') >= 0)
-        return;
-    const sourceFile = program.getSourceFile(file);
-    // now if we are here, we are sure that the file is the type we want
-    if (sourceFile == null)
-        return;
-    extractComposables(file, sourceFile);
-    extractComponents(file, sourceFile);
+  // exclude the src/index.ts file
+  // TODO: take inDir into consideration
+  if (file.indexOf('src/index.ts') >= 0) return;
+  // here we want to separate composables and components
+  // skip the file if it's not the type we want
+  if (mode === 'composables' && file.indexOf('composables') >= 0) return;
+  if (mode === 'components' && file.indexOf('composables') >= 0) return;
+  const sourceFile = program.getSourceFile(file);
+  // now if we are here, we are sure that the file is the type we want
+  if (sourceFile == null) return;
+  extractComposables(file, sourceFile);
+  extractComponents(file, sourceFile);
 });
 if (mode === 'both' || mode === 'composables') {
-    consola.info('Exported components:', Object.values(exportedComponents).flat().length);
-    consola.success(`Modules file created to ${outDir}/composables.ts`);
+  consola.info('Exported components:', Object.values(exportedComponents).flat().length);
+  consola.success(`Modules file created to ${outDir}/composables.ts`);
 }
 if (mode === 'both' || mode === 'components') {
-    consola.info('Exported composables:', Object.values(exportedComposables).flat().length);
-    consola.success(`Modules file created to ${outDir}/components.ts`);
+  consola.info('Exported composables:', Object.values(exportedComposables).flat().length);
+  consola.success(`Modules file created to ${outDir}/components.ts`);
 }
 consola.success('Done! 🎉');
