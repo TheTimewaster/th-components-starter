@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
 import ThButton from './ThButton.vue';
+import { describe, test, expect } from 'vitest';
 
 describe('ThButton', () => {
   test('mount', () => {

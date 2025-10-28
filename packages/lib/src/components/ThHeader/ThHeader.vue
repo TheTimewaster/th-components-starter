@@ -5,17 +5,12 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(
-  defineProps<{
-    /**
-     * the header title
-     */
-    title?: string;
-  }>(),
-  {
-    title: 'ThHeader',
-  }
-);
+const { title = 'ThHeader' } = defineProps<{
+  /**
+   * the header title
+   */
+  title?: string;
+}>();
 </script>
 
 <style scoped lang="scss" src="./ThHeader.scss" />

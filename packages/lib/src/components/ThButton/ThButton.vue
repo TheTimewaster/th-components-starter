@@ -1,6 +1,6 @@
 <template>
-  <button @click.prevent="handleClick" class="th-button">
-    <slot :textUppercase="uppercaseText">
+  <button class="th-button" @click.prevent="handleClick">
+    <slot :text-uppercase="uppercaseText">
       {{ text }}
     </slot>
   </button>
@@ -9,25 +9,18 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-interface Events {
-  (e: 'click'): void;
-}
+const { text = 'click here' } = defineProps<{
+  /**
+   * the button text content
+   */
+  text?: string;
+}>();
 
-const props = withDefaults(
-  defineProps<{
-    /**
-     * the button text content
-     */
-    text: string;
-  }>(),
-  {
-    text: 'click here',
-  }
-);
+const emit = defineEmits<{
+  click: [];
+}>();
 
-const emit = defineEmits<Events>();
-
-const uppercaseText = computed(() => props.text.toUpperCase());
+const uppercaseText = computed(() => text.toUpperCase());
 
 const handleClick = () => emit('click');
 </script>

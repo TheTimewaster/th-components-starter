@@ -23,13 +23,15 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path ../../.gitignore"
   },
   "dependencies": {
-    "vue": "^3.2.45"
+    "vue": "^3.5.22"
   },
   "devDependencies": {
     "@babel/types": "^7.20.5",
+    "jsdom": "^27.0.1",
     "resolve-tspaths": "^0.8.18",
-    "sass": "^1.56.1",
-    "vite-plugin-dts": "^3.7.3",
-    "vite-plugin-static-copy": "^1.0.1"
+    "sass": "^1.93.2",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-static-copy": "^3.1.4",
+    "vitest": "^4.0.4"
   }
 }

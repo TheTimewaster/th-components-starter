@@ -8,12 +8,22 @@ const title = ref<string>('Test UI for component lib 📒');
 
 <template>
   <div>
-    <input type="text" v-model="title" />
-    <header>
+    <input v-model="title" class="input" type="text" />
+    <header class="header">
       <th-header :title="title" />
     </header>
-    <main>
+    <main class="main">
       <counter-bar />
     </main>
   </div>
 </template>
+
+<style scoped lang="css">
+.input {
+  margin-bottom: 1rem;
+}
+
+.header {
+  margin-bottom: 4rem;
+}
+</style>
