@@ -1,13 +1,13 @@
-# th-components-starter 🧱
+# th-components-starter 🏗
 
 th-components-starter is a heavily opionated boilerplate for a Vue 3 component library.
 
 - ✌️ uses Vue 3 with setup script syntax
 - 💪 exports typed props, slot props and events for components
 - 🛠 can be extended with utilities and composables
-- ✨ pre configured ESlint with Prettier integration
+- ✨ heavily opionated ESlint and Prettier configuration
 - ⚡️ powered by Vite as build tool
-- 🧩 support for ES6 imports and fully tree shakable
+- 🧩 support for ES module imports and fully tree shakable
 - 🎨 components use SCSS as CSS preprocessor
 
 ## How to start 🚀
